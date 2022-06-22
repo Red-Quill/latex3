@@ -450,6 +450,26 @@
   }
 %    \end{macrocode}
 % \end{macro}
+%
+% \subsection{PDF Page size (media box)}
+%
+%  Everything here is delayed to the start of the document so that the
+%  backend will definitely be loaded.
+%    \begin{macrocode}
+\cs_if_exist:NT \IfDocumentMetadataTF
+  {
+    \IfDocumentMetadataTF
+      {
+        \tl_gput_right:Nn \@kernel@before@begindocument
+          {
+            \@@_backend_pagesize_set:nn
+              \paperwidth \paperheight
+          }
+      }
+      { }
+  }
+%    \end{macrocode}
+%
 %    \begin{macrocode}
 %</package>
 %    \end{macrocode}
